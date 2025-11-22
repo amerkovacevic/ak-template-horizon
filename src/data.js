@@ -1,116 +1,86 @@
-export const stylists = [
+export const statistics = [
   {
-    id: 1,
-    name: "Sarah Mitchell",
-    role: "Senior Stylist",
-    bio: "With over 10 years of experience, Sarah specializes in color correction and balayage techniques. Her passion for staying current with trends ensures you'll leave looking and feeling amazing.",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop",
+    value: '6 mil',
+    label: "The company's annual revenue",
   },
   {
-    id: 2,
-    name: "James Chen",
-    role: "Master Barber",
-    bio: "James brings precision and artistry to every cut. Specializing in modern fades and classic styles, he's known for his attention to detail and personalized approach.",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop",
+    value: '315',
+    label: 'Projects completed worldwide',
   },
   {
-    id: 3,
-    name: "Emma Rodriguez",
-    role: "Color Specialist",
-    bio: "Emma is our color expert, transforming hair with vibrant, natural-looking color. She's certified in multiple color techniques and loves creating custom looks for each client.",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop",
+    value: '120K',
+    label: 'Employees work in all parts of the world',
   },
-];
+]
+
+export const partners = [
+  { name: 'Horizon Energy', logo: '🌞' },
+  { name: 'Tello Corp.', logo: '⚡' },
+  { name: 'Business', logo: '💼' },
+  { name: 'Newspace', logo: '🚀' },
+  { name: 'Medtronic', logo: '🏥' },
+]
+
+export const serviceFeatures = [
+  {
+    icon: '🔒',
+    title: 'Layered security',
+    description: 'Multi-level security protocols to protect your energy infrastructure and data.',
+  },
+  {
+    icon: '✅',
+    title: 'Quality control of each part',
+    description: 'Rigorous testing and quality assurance for every component in our systems.',
+  },
+  {
+    icon: '🎧',
+    title: 'Reliable customer service',
+    description: '24/7 support team ready to assist you with any questions or concerns.',
+  },
+  {
+    icon: '📖',
+    title: 'Maintenance manual book',
+    description: 'Comprehensive documentation to help you maintain your energy systems.',
+  },
+  {
+    icon: '🚚',
+    title: 'Delivered safely',
+    description: 'Secure and insured delivery of all equipment and installations.',
+  },
+  {
+    icon: '🧠',
+    title: 'Based on artificial intelligence',
+    description: 'Smart energy management powered by advanced AI technology.',
+  },
+]
 
 export const services = [
   {
-    id: 1,
-    name: "Women's Haircut",
-    description: "Professional cut and style consultation",
-    price: 65,
-    duration: "45 min",
+    number: '01',
+    title: 'Solar panels for home',
+    description: 'Residential solar solutions for sustainable home energy.',
   },
   {
-    id: 2,
-    name: "Men's Haircut",
-    description: "Classic or modern cut with styling",
-    price: 35,
-    duration: "30 min",
+    number: '02',
+    title: 'Solar panels for industry',
+    description: 'Large-scale industrial solar installations for businesses.',
   },
   {
-    id: 3,
-    name: "Color & Highlights",
-    description: "Full color service with highlights",
-    price: 150,
-    duration: "2.5 hours",
+    number: '03',
+    title: 'Solar panels for chargers',
+    description: 'Solar-powered charging stations for electric vehicles.',
   },
   {
-    id: 4,
-    name: "Balayage",
-    description: "Hand-painted highlights for natural look",
-    price: 180,
-    duration: "3 hours",
+    number: '04',
+    title: 'Wind power generator',
+    description: 'Wind energy systems for clean, renewable power generation.',
   },
-  {
-    id: 5,
-    name: "Hair Treatment",
-    description: "Deep conditioning and repair treatment",
-    price: 45,
-    duration: "30 min",
-  },
-  {
-    id: 6,
-    name: "Blowout & Style",
-    description: "Professional blowout and styling",
-    price: 40,
-    duration: "30 min",
-  },
-  {
-    id: 7,
-    name: "Bridal Package",
-    description: "Complete bridal hair and makeup",
-    price: 250,
-    duration: "3 hours",
-  },
-  {
-    id: 8,
-    name: "Beard Trim",
-    description: "Professional beard shaping and trim",
-    price: 25,
-    duration: "20 min",
-  },
-];
+]
 
-export const testimonials = [
-  {
-    id: 1,
-    name: "Jessica Martinez",
-    text: "Horizon Salon transformed my hair! Sarah did an amazing balayage that looks so natural. The whole experience was relaxing and professional.",
-    rating: 5,
-  },
-  {
-    id: 2,
-    name: "Michael Thompson",
-    text: "Best haircut I've ever had! James really listened to what I wanted and delivered. I'll definitely be back.",
-    rating: 5,
-  },
-  {
-    id: 3,
-    name: "Amanda Lee",
-    text: "Emma is a color genius! My highlights are exactly what I envisioned. The salon has such a welcoming atmosphere.",
-    rating: 5,
-  },
-  {
-    id: 4,
-    name: "David Park",
-    text: "Professional service from start to finish. The stylists are knowledgeable and the prices are fair. Highly recommend!",
-    rating: 5,
-  },
-  {
-    id: 5,
-    name: "Rachel Green",
-    text: "I've been coming here for years. The quality is consistent and the team always makes me feel special. Love this place!",
-    rating: 5,
-  },
-];
+export const testimonial = {
+  company: 'Medtronic',
+  quote: 'We have used services from Horizon Energy for most of our stations, this is our strategic steps to continue to increase the number of solar panel usage for our stations, we are very satisfied with the services from Horizon Energy.',
+  author: 'Jennifer Rostad',
+  position: 'CTO of Medtronic',
+}
 

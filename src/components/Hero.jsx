@@ -1,46 +1,124 @@
-import { Calendar } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
+import { motion } from 'framer-motion'
 
-function Hero({ onBookNow }) {
+export default function Hero() {
+
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-neutral-50 via-neutral-100 to-neutral-50 px-4 py-20">
-      <div className="max-w-4xl mx-auto text-center animate-fade-in">
-        <h1 className="text-5xl md:text-7xl font-light text-neutral-800 mb-6 leading-tight">
-          Welcome to <span className="font-semibold">Horizon Salon</span>
-        </h1>
-        <p className="text-xl md:text-2xl text-neutral-600 mb-12 max-w-2xl mx-auto">
-          Where style meets expertise. Book your appointment and experience the difference.
-        </p>
-        <button
-          onClick={onBookNow}
-          className="group relative inline-flex items-center gap-3 bg-accent-yellow hover:bg-accent-yellow-dark text-neutral-900 font-semibold px-8 py-4 rounded-full text-lg transition-smooth shadow-lg hover:shadow-xl transform hover:scale-105"
-        >
-          <Calendar className="w-5 h-5" />
-          <span>Book Now</span>
-          <div className="absolute inset-0 rounded-full bg-accent-yellow-dark opacity-0 group-hover:opacity-20 transition-smooth"></div>
-        </button>
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto">
-          <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-sm animate-slide-up">
-            <div className="text-3xl font-bold text-accent-yellow mb-2">10+</div>
-            <div className="text-neutral-600">Years Experience</div>
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=1920&h=1080&fit=crop&q=80"
+          alt="Wind turbines in green field"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-accent/60 via-accent-dark/50 to-neutral-900/70"></div>
+        <div className="absolute inset-0 bg-black/30"></div>
+      </div>
+
+      {/* Content */}
+      <div className="relative z-30 container-custom px-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
+          {/* Left Side - Headline and CTAs */}
+          <div className="space-y-6">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="space-y-4"
+            >
+              <p className="text-xl md:text-2xl text-white/90 font-medium drop-shadow-lg">
+                #1 Energy provider in the world
+              </p>
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white drop-shadow-2xl leading-tight">
+                New Energy for the Future
+              </h1>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="flex flex-col sm:flex-row gap-4 items-start"
+            >
+              <button
+                onClick={() => scrollToSection('contact')}
+                className="bg-white text-accent hover:bg-neutral-50 font-semibold py-3 px-8 rounded-full transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg inline-flex items-center gap-2 group"
+              >
+                Get in touch
+                <ArrowRight className="w-5 h-5 text-accent group-hover:translate-x-1 transition-transform" />
+              </button>
+              <button
+                onClick={() => scrollToSection('services')}
+                className="text-white hover:text-accent-light font-semibold py-3 px-8 inline-flex items-center gap-2 group transition-colors"
+              >
+                Our services
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </motion.div>
           </div>
-          <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-sm animate-slide-up" style={{ animationDelay: '0.1s' }}>
-            <div className="text-3xl font-bold text-accent-yellow mb-2">5000+</div>
-            <div className="text-neutral-600">Happy Clients</div>
-          </div>
-          <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-sm animate-slide-up" style={{ animationDelay: '0.2s' }}>
-            <div className="text-3xl font-bold text-accent-yellow mb-2">4.9★</div>
-            <div className="text-neutral-600">Average Rating</div>
-          </div>
+
+          {/* Right Side - Floating Project Card */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, y: 30 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.4 }}
+            className="hidden lg:block"
+          >
+            <div className="relative bg-white/10 backdrop-blur-md rounded-2xl p-6 shadow-2xl border border-white/20 hover:bg-white/15 transition-all duration-300 cursor-pointer group">
+              <div className="relative w-full h-48 rounded-xl overflow-hidden mb-4">
+                <img
+                  src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&h=600&fit=crop&q=80"
+                  alt="Wind turbine close-up"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+              </div>
+              <div className="flex items-center justify-between text-white">
+                <span className="font-semibold text-lg">Discover Our Recent Project</span>
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </div>
+          </motion.div>
         </div>
       </div>
-      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-neutral-400 rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-neutral-400 rounded-full mt-2"></div>
+
+      {/* Scrollable Text Banner */}
+      <div className="absolute bottom-0 left-0 right-0 bg-accent-dark/95 text-white py-3 overflow-hidden z-40">
+        <div className="flex whitespace-nowrap" style={{ width: '200%' }}>
+          <div className="flex animate-scroll" style={{ width: '100%' }}>
+            <span className="text-lg font-medium mx-8">Renewable Energy Solutions</span>
+            <span className="text-lg font-medium mx-8">•</span>
+            <span className="text-lg font-medium mx-8">Solar Power Systems</span>
+            <span className="text-lg font-medium mx-8">•</span>
+            <span className="text-lg font-medium mx-8">Wind Energy Generation</span>
+            <span className="text-lg font-medium mx-8">•</span>
+            <span className="text-lg font-medium mx-8">Sustainable Future</span>
+            <span className="text-lg font-medium mx-8">•</span>
+            <span className="text-lg font-medium mx-8">Clean Energy Technology</span>
+            <span className="text-lg font-medium mx-8">•</span>
+          </div>
+          <div className="flex animate-scroll" style={{ width: '100%' }}>
+            <span className="text-lg font-medium mx-8">Renewable Energy Solutions</span>
+            <span className="text-lg font-medium mx-8">•</span>
+            <span className="text-lg font-medium mx-8">Solar Power Systems</span>
+            <span className="text-lg font-medium mx-8">•</span>
+            <span className="text-lg font-medium mx-8">Wind Energy Generation</span>
+            <span className="text-lg font-medium mx-8">•</span>
+            <span className="text-lg font-medium mx-8">Sustainable Future</span>
+            <span className="text-lg font-medium mx-8">•</span>
+            <span className="text-lg font-medium mx-8">Clean Energy Technology</span>
+            <span className="text-lg font-medium mx-8">•</span>
+          </div>
         </div>
       </div>
     </section>
   )
 }
-
-export default Hero
 

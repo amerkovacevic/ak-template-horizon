@@ -1,125 +1,166 @@
 import { useState, useEffect } from 'react'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, Plus } from 'lucide-react'
 
-function Header({ onBookNow }) {
+export default function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50)
     }
+
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const scrollToSection = (id) => {
-    const element = document.getElementById(id)
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen)
+  }
+
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId)
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' })
-      setIsMobileMenuOpen(false)
+      setIsMenuOpen(false)
     }
   }
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-smooth ${
-        isScrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-sm'
+    <header 
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled 
+          ? 'bg-white/95 backdrop-blur-sm border-b border-neutral-200 shadow-sm' 
           : 'bg-transparent'
       }`}
     >
-      <nav className="max-w-7xl mx-auto px-4 py-4">
+      <nav className="container-custom py-4">
         <div className="flex items-center justify-between">
-          <div
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="cursor-pointer"
-          >
-            <h1 className="text-2xl font-semibold text-neutral-800">
-              Horizon <span className="text-accent-yellow">Salon</span>
-            </h1>
+          {/* Logo */}
+          <div className="flex items-center space-x-2">
+            <Plus className="w-8 h-8 text-accent" />
+            <span className={`text-2xl font-bold ${isScrolled ? 'text-neutral-900' : 'text-white'}`}>
+              Horizon Energy
+            </span>
           </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          {/* Desktop Navigation - Centered */}
+          <div className="hidden lg:flex items-center space-x-8 absolute left-1/2 -translate-x-1/2">
             <button
-              onClick={() => scrollToSection('stylists')}
-              className="text-neutral-700 hover:text-accent-yellow transition-smooth font-medium"
+              onClick={() => scrollToSection('home')}
+              className={`transition-colors font-medium ${
+                isScrolled ? 'text-neutral-700 hover:text-accent' : 'text-white hover:text-accent-light'
+              }`}
             >
-              Stylists
+              Home
+            </button>
+            <button
+              onClick={() => scrollToSection('about')}
+              className={`transition-colors font-medium ${
+                isScrolled ? 'text-neutral-700 hover:text-accent' : 'text-white hover:text-accent-light'
+              }`}
+            >
+              About Us
+            </button>
+            <button
+              onClick={() => scrollToSection('products')}
+              className={`transition-colors font-medium ${
+                isScrolled ? 'text-neutral-700 hover:text-accent' : 'text-white hover:text-accent-light'
+              }`}
+            >
+              Features
             </button>
             <button
               onClick={() => scrollToSection('services')}
-              className="text-neutral-700 hover:text-accent-yellow transition-smooth font-medium"
+              className={`transition-colors font-medium ${
+                isScrolled ? 'text-neutral-700 hover:text-accent' : 'text-white hover:text-accent-light'
+              }`}
             >
               Services
             </button>
             <button
-              onClick={() => scrollToSection('testimonials')}
-              className="text-neutral-700 hover:text-accent-yellow transition-smooth font-medium"
-            >
-              Reviews
-            </button>
-            <button
               onClick={() => scrollToSection('contact')}
-              className="text-neutral-700 hover:text-accent-yellow transition-smooth font-medium"
+              className={`transition-colors font-medium ${
+                isScrolled ? 'text-neutral-700 hover:text-accent' : 'text-white hover:text-accent-light'
+              }`}
             >
               Contact
             </button>
+          </div>
+
+          {/* Right Side Actions */}
+          <div className="hidden md:flex items-center space-x-6">
             <button
-              onClick={onBookNow}
-              className="bg-accent-yellow hover:bg-accent-yellow-dark text-neutral-900 font-semibold px-6 py-2 rounded-full transition-smooth shadow-lg hover:shadow-xl"
+              className={`transition-colors font-medium ${
+                isScrolled ? 'text-neutral-700 hover:text-accent' : 'text-white hover:text-accent-light'
+              }`}
             >
-              Book Now
+              Log in
+            </button>
+            <button
+              onClick={() => scrollToSection('contact')}
+              className="btn-primary"
+            >
+              Get in touch
             </button>
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 text-neutral-800"
+            onClick={toggleMenu}
+            className={`md:hidden ${isScrolled ? 'text-neutral-900' : 'text-white'}`}
             aria-label="Toggle menu"
           >
-            {isMobileMenuOpen ? (
-              <X className="w-6 h-6" />
-            ) : (
-              <Menu className="w-6 h-6" />
-            )}
+            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
 
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 space-y-4 animate-slide-up">
+        {/* Mobile Navigation */}
+        {isMenuOpen && (
+          <div className="md:hidden mt-4 pb-4 space-y-4 animate-slide-down bg-white rounded-lg p-4">
             <button
-              onClick={() => scrollToSection('stylists')}
-              className="block w-full text-left text-neutral-700 hover:text-accent-yellow transition-smooth font-medium py-2"
+              onClick={() => scrollToSection('home')}
+              className="block w-full text-left text-neutral-700 hover:text-accent transition-colors py-2 font-medium"
             >
-              Stylists
+              Home
+            </button>
+            <button
+              onClick={() => scrollToSection('about')}
+              className="block w-full text-left text-neutral-700 hover:text-accent transition-colors py-2 font-medium"
+            >
+              About Us
+            </button>
+            <button
+              onClick={() => scrollToSection('products')}
+              className="block w-full text-left text-neutral-700 hover:text-accent transition-colors py-2 font-medium"
+            >
+              Features
             </button>
             <button
               onClick={() => scrollToSection('services')}
-              className="block w-full text-left text-neutral-700 hover:text-accent-yellow transition-smooth font-medium py-2"
+              className="block w-full text-left text-neutral-700 hover:text-accent transition-colors py-2 font-medium"
             >
               Services
             </button>
             <button
-              onClick={() => scrollToSection('testimonials')}
-              className="block w-full text-left text-neutral-700 hover:text-accent-yellow transition-smooth font-medium py-2"
-            >
-              Reviews
-            </button>
-            <button
               onClick={() => scrollToSection('contact')}
-              className="block w-full text-left text-neutral-700 hover:text-accent-yellow transition-smooth font-medium py-2"
+              className="block w-full text-left text-neutral-700 hover:text-accent transition-colors py-2 font-medium"
             >
               Contact
             </button>
             <button
-              onClick={onBookNow}
-              className="w-full bg-accent-yellow hover:bg-accent-yellow-dark text-neutral-900 font-semibold px-6 py-3 rounded-full transition-smooth shadow-lg"
+              className="block w-full text-left text-neutral-700 hover:text-accent transition-colors py-2 font-medium"
             >
-              Book Now
+              Log in
+            </button>
+            <button
+              onClick={() => {
+                scrollToSection('contact')
+                setIsMenuOpen(false)
+              }}
+              className="btn-primary w-full"
+            >
+              Get in touch
             </button>
           </div>
         )}
@@ -127,6 +168,4 @@ function Header({ onBookNow }) {
     </header>
   )
 }
-
-export default Header
 
